@@ -23,7 +23,7 @@ mkdir -p /var/lib/tailscale
 #sysctl -p /etc/sysctl.conf
 
 # Get service up again
-/usr/bin/tailscale up --hostname=rilakkuma
+/usr/bin/tailscale up
 rc-service tailscale restart
 
 # Remove downloaded files
