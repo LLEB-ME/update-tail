@@ -1,9 +1,9 @@
 #!/bin/sh
 arch=$(uname -m)
 echo "arch: $arch"
-if [[ arch == "arm64" ]]; then
+if [[ "$arch" == "arm64" ]]; then
   TSFILE="tailscale_1.24.0_arm64.tgz"
-elif [[ arch == "x86_64" ]]; then
+elif [[ "$arch" == "x86_64" ]]; then
   TSFILE="tailscale_1.24.0_amd64.tgz"
 else
   echo "unknown arch. quitting."
@@ -35,9 +35,9 @@ mkdir -p /var/lib/tailscale
 # Get service up again
 /usr/bin/tailscale up
 read -p "prompt: what init system? (openrc, runit)" x
-if [[ x == "openrc" ]]; then
+if [[ "$x" == "openrc" ]]; then
   rc-service tailscale restart
-elif [[ x == "runit" ]]; then
+elif [[ "$x" == "runit" ]]; then
   sv restart tailscale
 else
   echo "invalid init."
