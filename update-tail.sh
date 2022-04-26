@@ -1,5 +1,15 @@
 #!/bin/sh
-TSFILE=tailscale_1.24.0_arm64.tgz
+arch=$(uname -m)
+echo "arch: $OSArch"
+if [[ arch == "arm64" ]]; then
+  TSFILE=tailscale_1.24.0_arm64.tgz
+elif [[ arch == "x86_64" ]]; then
+  TSFILE=tailscale_1.24.0_amd64.tgz
+else
+  echo "unknown arch. quitting."
+  exit 1;
+fi
+echo "downloading: $TSFILE"
 
 # Check for sudoers and attempt upgrade
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
