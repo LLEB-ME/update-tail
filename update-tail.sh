@@ -17,9 +17,9 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
   exit;
 fi
 
-# Update Tailscale
-wget https://pkgs.tailscale.com/stable/${TSFILE} && \                                                                            
-  tar xzf ${TSFILE} --strip-components=1 -C .
+# Update/Install Tailscale
+wget https://pkgs.tailscale.com/stable/${TSFILE}
+tar xzf ${TSFILE} --strip-components=1 -C .
 cp tailscale /usr/bin/tailscale
 cp tailscaled /usr/sbin/tailscaled
 mkdir -p /var/run/tailscale
