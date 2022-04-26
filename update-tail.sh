@@ -1,7 +1,7 @@
 #!/bin/sh
 arch=$(uname -m)
 echo "arch: $arch"
-if [[ "$arch" == "arm64" ]]; then
+if [ "$arch" == "arm64" ] || [ "$arch" == "aarch64"]; then
   TSFILE="tailscale_1.24.0_arm64.tgz"
 elif [[ "$arch" == "x86_64" ]]; then
   TSFILE="tailscale_1.24.0_amd64.tgz"
