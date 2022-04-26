@@ -1,3 +1,4 @@
+#!/bin/sh
 TSFILE=tailscale_1.24.0_arm64.tgz
 
 # Check for sudoers and attempt upgrade
