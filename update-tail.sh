@@ -8,7 +8,6 @@ if [[ $(/usr/bin/id -u) -ne 0 ]]; then
 fi
 
 # Update Tailscale
-apk update
 wget https://pkgs.tailscale.com/stable/${TSFILE} && \                                                                            
   tar xzf ${TSFILE} --strip-components=1 -C .
 cp tailscale /usr/bin/tailscale
@@ -25,7 +24,17 @@ mkdir -p /var/lib/tailscale
 
 # Get service up again
 /usr/bin/tailscale up
-rc-service tailscale restart
+choices=('openrc' 'runit')
+read -p "prompt: what init system? (openrc, runit)" x
+if [[ x == "openrc" ]]; then
+  rc-service tailscale restart
+elif [[ x == "runit" ]]; then
+  sv restart tailscale
+else
+  echo "invalid init."
+  exit 1;
+fi
 
 # Remove downloaded files
 rm -r tailscale tailscaled ${TSFILE} systemd/
+exit 0;
