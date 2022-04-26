@@ -36,9 +36,9 @@ mkdir -p /var/lib/tailscale
 /usr/bin/tailscale up
 read -p "prompt: what init system? (openrc, runit) " x
 if [[ "$x" == "openrc" ]]; then
-  rc-service tailscale restart
+  rc-service tailscaled restart
 elif [[ "$x" == "runit" ]]; then
-  sv restart tailscale
+  sv restart tailscaled
 else
   echo "invalid init."
   exit 1;
