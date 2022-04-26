@@ -1,6 +1,6 @@
 #!/bin/sh
 arch=$(uname -m)
-echo "arch: $OSArch"
+echo "arch: $arch"
 if [[ arch == "arm64" ]]; then
   TSFILE=tailscale_1.24.0_arm64.tgz
 elif [[ arch == "x86_64" ]]; then
