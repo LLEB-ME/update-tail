@@ -24,7 +24,6 @@ mkdir -p /var/lib/tailscale
 
 # Get service up again
 /usr/bin/tailscale up
-choices=('openrc' 'runit')
 read -p "prompt: what init system? (openrc, runit)" x
 if [[ x == "openrc" ]]; then
   rc-service tailscale restart
