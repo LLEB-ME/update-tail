@@ -1,4 +1,11 @@
 #!/bin/sh
+# Check for sudoers and attempt upgrade
+if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+  sudo $0;
+  exit;
+fi
+
+# Assume architecture
 arch=$(uname -m)
 echo "arch: $arch"
 if [ $arch = "arm64" ] || [ $arch = "aarch64" ]; then
@@ -11,13 +18,7 @@ else
 fi
 echo "downloading: $TSFILE"
 
-# Check for sudoers and attempt upgrade
-if [[ $(/usr/bin/id -u) -ne 0 ]]; then
-  sudo $0;
-  exit;
-fi
-
-# Update/Install Tailscale
+# Update/install Tailscale
 wget https://pkgs.tailscale.com/stable/${TSFILE}
 tar xzf ${TSFILE} --strip-components=1 -C .
 cp tailscale /usr/bin/tailscale
