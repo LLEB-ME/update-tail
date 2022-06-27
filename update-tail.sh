@@ -9,9 +9,9 @@ fi
 arch=$(uname -m)
 echo "arch: $arch"
 if [ $arch = "arm64" ] || [ $arch = "aarch64" ]; then
-  TSFILE="tailscale_1.26.0_arm64.tgz"
+  TSFILE="tailscale_1.26.1_arm64.tgz"
 elif [[ $arch = "x86_64" ]]; then
-  TSFILE="tailscale_1.26.0_amd64.tgz"
+  TSFILE="tailscale_1.26.1_amd64.tgz"
 else
   echo "unknown arch. quitting."
   exit 1;
